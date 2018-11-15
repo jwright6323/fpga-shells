@@ -144,6 +144,7 @@ trait IOOverlay[IO <: Data, DesignOutput] extends Overlay[DesignOutput]
   def ioFactory: IO
   def shell: IOShell
 
+  println("Running IOOverlay")
   val io = shell { InModuleBody {
     val port = IO(ioFactory)
     port.suggestName(name)
