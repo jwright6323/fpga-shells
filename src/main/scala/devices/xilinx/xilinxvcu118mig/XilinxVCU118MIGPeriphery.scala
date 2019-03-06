@@ -13,7 +13,9 @@ trait HasMemoryXilinxVCU118MIG { this: BaseSubsystem =>
 
   val xilinxvcu118mig = LazyModule(new XilinxVCU118MIG(p(MemoryXilinxDDRKey)))
 
-  xilinxvcu118mig.node := mbus.toDRAMController(Some("xilinxvcu118mig"))()
+  memBuses.map { mbus =>
+    xilinxvcu118mig.node := mbus.toDRAMController(Some("xilinxvcu118mig"))()
+  }
 }
 
 trait HasMemoryXilinxVCU118MIGBundle {

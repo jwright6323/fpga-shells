@@ -15,7 +15,9 @@ trait HasMemoryPolarFireEvalKitDDR3 { this: BaseSubsystem =>
 
   val polarfireddrsubsys = LazyModule(new PolarFireEvalKitDDR3(p(MemoryMicrosemiDDR3Key)))
 
-  polarfireddrsubsys.node := mbus.toDRAMController(Some("PolarFireDDR"))()
+  memBuses.map { mbus =>
+    polarfireddrsubsys.node := mbus.toDRAMController(Some("PolarFireDDR"))()
+  }
 }
 
 trait HasMemoryPolarFireEvalKitDDR3Bundle {
