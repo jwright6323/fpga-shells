@@ -13,9 +13,7 @@ trait HasMemoryXilinxVC707MIG { this: BaseSubsystem =>
 
   val xilinxvc707mig = LazyModule(new XilinxVC707MIG(p(MemoryXilinxDDRKey)))
 
-  memBuses.map { mbus =>
-    xilinxvc707mig.node := mbus.toDRAMController(Some("xilinxvc707mig"))()
-  }
+  xilinxvc707mig.node := mbus.toDRAMController(Some("xilinxvc707mig"))()
 }
 
 trait HasMemoryXilinxVC707MIGBundle {

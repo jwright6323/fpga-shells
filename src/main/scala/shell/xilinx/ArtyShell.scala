@@ -167,7 +167,7 @@ abstract class ArtyShell(implicit val p: Parameters) extends RawModule {
   def connectSPIFlash(qspi: SPIPortIO, clock: Clock, reset: Bool): Unit = {
     val qspi_pins = Wire(new SPIPins(() => {new BasePin()}, qspi.c))
 
-    SPIPinsFromPort(qspi_pins, qspi, clock, reset, syncStages = qspi.c.sampleDelay)
+    SPIPinsFromPort(qspi_pins, qspi, clock, reset, syncStages = qspi.c.defaultSampleDel)
 
     IOBUF(qspi_sck, qspi.sck)
     IOBUF(qspi_cs,  qspi.cs(0))
