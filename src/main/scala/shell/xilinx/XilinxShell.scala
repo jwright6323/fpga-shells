@@ -15,6 +15,9 @@ class XDC(val name: String)
   protected def addConstraint(command: => String) { constraints = (() => command) +: constraints }
   ElaborationArtefacts.add(name, constraints.map(_()).reverse.mkString("\n") + "\n")
 
+  def addIbufLowPower(io: IOPin, value: String) {
+    addConstraint(s"set_property IBUF_LOW_PWR ${value} ${io.sdcPin}")
+  }
   def addBoardPin(io: IOPin, pin: String) {
     addConstraint(s"set_property BOARD_PIN {${pin}} ${io.sdcPin}")
   }
